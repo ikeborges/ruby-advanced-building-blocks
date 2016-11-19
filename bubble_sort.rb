@@ -11,12 +11,19 @@ def bubble_sort(arr)
       end
     end
 
-    break if not swapped
+    break unless swapped
   end
 
   arr
 end
 
+def bubble_sort_by(arr)
+  bubble_sort(arr).reverse
+end
 
-p bubble_sort([4,3,78,2,0,2])
+# p bubble_sort([4, 3, 78, 2, 0, 2])
 # [3, 4, 2, 0, 2, 78]
+
+p bubble_sort_by(%w(hi hello hey)) do |left, right|
+  left.length - right.length
+end
