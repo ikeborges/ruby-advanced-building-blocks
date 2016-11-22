@@ -35,9 +35,13 @@ module Enumerable
     end
   end
 
+  def my_any?
+
+  end
+
 end
 
 my_array = ["casa", "carro", "pedra", "galinha"]
 
 
-p my_array.my_all?
+p my_array.my_any? { |i| i =~ /a/ }
