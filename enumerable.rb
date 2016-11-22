@@ -15,13 +15,15 @@ module Enumerable
   end
 
   def my_select
-    length = self.length
-    length.times do |n|
-
+    result = []
+    self.my_each do |i|
+      result << i if yield(i)
     end
+    return result
   end
+  
 end
 
 my_array = %w(casa carro pão rocha pedra galinha)
 
-my_array.select { |i| i == pão}
+p my_array.my_select { |i| i =~ /r/ }
