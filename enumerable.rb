@@ -23,15 +23,21 @@ module Enumerable
   end
 
   def my_all?
-    result = []
-    self.my_each do |i|
-      result << i if yield(i)
+    if block_given?
+      result = []
+      self.my_each do |i|
+        result << i if yield(i)
+      end
+      return result == self ? true : false
+    else
+      self.my_each { |i| return false if i == false  || i == nil }
+      return true
     end
-    return true if result == self
   end
 
 end
 
-my_array = %w(casa carro rocha pedra galinha)
+my_array = ["casa", "carro", "pedra", "galinha"]
 
-p my_array.my_all? { |i| i =~ /a/ }
+
+p my_array.my_all?
