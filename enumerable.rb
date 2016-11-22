@@ -15,10 +15,13 @@ module Enumerable
   end
 
   def my_select
+    length = self.length
+    length.times do |n|
 
+    end
   end
 end
 
 my_array = %w(casa carro pão rocha pedra galinha)
 
-my_array.my_each_with_index { |v, i| puts "#{v} testando com o index #{i}"}
+my_array.select { |i| i == pão}
