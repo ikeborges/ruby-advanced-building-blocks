@@ -21,9 +21,15 @@ module Enumerable
     end
     return result
   end
-  
+
+  def my_all?
+    self.my_each do |i|
+      return true if yield(i)
+    end
+  end
+
 end
 
 my_array = %w(casa carro pão rocha pedra galinha)
 
-p my_array.my_select { |i| i =~ /r/ }
+p my_array.my_all? { |i| i =~ /r/ }
