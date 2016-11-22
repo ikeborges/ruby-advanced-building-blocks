@@ -29,19 +29,24 @@ module Enumerable
         result << i if yield(i)
       end
       return result == self ? true : false
-    else
+    else # If no block is given
       self.my_each { |i| return false if i == false  || i == nil }
       return true
     end
   end
 
   def my_any?
-
+    if block_given?
+      self.my_each { |i| return true if yield(i) }
+    else
+      self.my_each { |i| return true if i }
+    end
+    return false
   end
 
 end
 
-my_array = ["casa", "carro", "pedra", "galinha"]
+my_array = ["casa", "carro", "pedra", "galinha", "ovo"]
 
 
-p my_array.my_any? { |i| i =~ /a/ }
+p my_array.my_any?
