@@ -52,8 +52,21 @@ module Enumerable
     end
     true
   end
+
+  def my_count(item = nil)
+    if block_given?
+      result = []
+      my_each { |i| result << i if yield(i) }
+      return result.length
+    end
+    if item
+      result = []
+      my_each { |i| result << i if i == item }
+      return result.length
+    end
+    return length if item.nil?
+  end
 end
 
-my_array = %w(casa carro pedra galinha ovo)
-
+# my_array = %w(casa carro pedra galinha ovo)
 # p my_array.my_none? { |i| i.length == 3 }
