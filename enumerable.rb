@@ -80,21 +80,21 @@ module Enumerable
     result
   end
 
-  def my_inject(initial_value = nil)
-    result = initial_value.nil? ? 0 : initial_value
-    my_each do |i|
-      result = yield(result, i)
+  def my_inject(result = nil)
+    my_each do |n|
+      result = result ? yield(result, n) : self[0]
     end
     result
   end
+end
 
-  def multiply_els(arr)
-    arr.my_inject do |r, o|
-      r * o
-    end
-  end
+def multiply_els(arr)
+  arr.my_inject { |r, i| r * i }
 end
 
 # my_array = %w(casa carro pedra galinha ovo)
 
-multiply_els([2,4,5]) #=> 40
+p multiply_els([2, 4, 5]) #=> 40
+
+p [1, 2, 3, 4].inject { |acc, elem| acc + elem }
+p [1, 2, 3, 4].my_inject { |acc, elem| acc + elem }
