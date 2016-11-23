@@ -66,7 +66,17 @@ module Enumerable
     end
     return length if item.nil?
   end
-end
 
-# my_array = %w(casa carro pedra galinha ovo)
-# p my_array.my_none? { |i| i.length == 3 }
+  def my_map
+    if block_given?
+      length = self.length
+      result = []
+      length.times do |i|
+        result << yield(self[i])
+      end
+    else
+      result = self
+    end
+    result
+  end
+end
