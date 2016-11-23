@@ -79,4 +79,22 @@ module Enumerable
     end
     result
   end
+
+  def my_inject(initial_value = nil)
+    result = initial_value.nil? ? 0 : initial_value
+    my_each do |i|
+      result = yield(result, i)
+    end
+    result
+  end
+
+  def multiply_els(arr)
+    arr.my_inject do |r, o|
+      r * o
+    end
+  end
 end
+
+# my_array = %w(casa carro pedra galinha ovo)
+
+multiply_els([2,4,5]) #=> 40
