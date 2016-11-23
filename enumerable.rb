@@ -67,15 +67,16 @@ module Enumerable
     return length if item.nil?
   end
 
-  def my_map
+  def my_map(p = nil)
+    result = []
     if block_given?
-      length = self.length
-      result = []
-      length.times do |i|
-        result << yield(self[i])
+      my_each do |i|
+        result << yield(i)
       end
-    else
-      result = self
+    elsif p
+      my_each do |i|
+        result << p.call(i)
+      end
     end
     result
   end
@@ -86,15 +87,8 @@ module Enumerable
     end
     result
   end
-
-  def multiply_els(arr)
-    arr.my_inject { |r, i| r * i }
-  end
 end
 
-# my_array = %w(casa carro pedra galinha ovo)
-
-p multiply_els([2, 4, 5]) #=> 40
-
-p [1, 2, 3, 4].inject { |acc, elem| acc + elem }
-p [1, 2, 3, 4].my_inject { |acc, elem| acc + elem }
+def multiply_els(arr)
+  arr.my_inject { |r, i| r * i }
+end
