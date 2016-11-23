@@ -86,10 +86,10 @@ module Enumerable
     end
     result
   end
-end
 
-def multiply_els(arr)
-  arr.my_inject { |r, i| r * i }
+  def multiply_els(arr)
+    arr.my_inject { |r, i| r * i }
+  end
 end
 
 # my_array = %w(casa carro pedra galinha ovo)
